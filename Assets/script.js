@@ -15,6 +15,8 @@ $(function () {
   }) 
   
   
+  var today = dayjs();
+  $('#currentDay').text(today.format("dddd MMMM DD"));
   
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
