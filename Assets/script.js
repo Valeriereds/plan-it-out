@@ -4,6 +4,15 @@
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
   
+  $('.saveBtn').on("click", function() {
+    // var textMe =  $("textarea")
+    // localStorage.setItem("text", textMe.val(""));
+    var timeKey = $(this).parent().attr('id').split('-')[1];
+    var valTxt = $(this).parent().find('.description').val();
+    localStorage.setItem(timeKey, valTxt);
+  })
+
+  }) 
   
   
   
