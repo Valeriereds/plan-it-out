@@ -7,16 +7,32 @@ $(function () {
   $('.saveBtn').on("click", function() {
     // var textMe =  $("textarea")
     // localStorage.setItem("text", textMe.val(""));
-    var timeKey = $(this).parent().attr('id').split('-')[1];
+    var timeSplit = $(this).parent().attr('id').split('-')[1];
     var valTxt = $(this).parent().find('.description').val();
-    localStorage.setItem(timeKey, valTxt);
+    localStorage.setItem(timeSplit, valTxt);
+  })
+  
+}) 
+  var whatDayIsIt = dayjs();
+  $('#currentDay').text(whatDayIsIt.format("dddd MMMM DD"));
+
+  var whatTimeIsIt = dayjs().format('H');
+  $(".time-block").each(function() {
+  var blockPartyTime = $(this).attr('id').split('-')[1];
+
+  var textMe = localStorage.getItem(blockPartyTime);
+  var findMe = $(this).find('.description');
+  findMe.val(textMe); 
+    if (blockPartyTime < whatTimeIsIt) {
+      $(this).find('.description').addClass('past');
+    } else if (blockPartyTime === whatTimeIsIt) {
+      $(this).find('.description').addClass('present');
+    } else {
+      $(this).find('.description').addClass('future');
+    };
   })
 
-  }) 
-  
-  
-  var today = dayjs();
-  $('#currentDay').text(today.format("dddd MMMM DD"));
+
   
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
