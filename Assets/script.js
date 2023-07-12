@@ -1,22 +1,20 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+// TODO: Add a listener for click events on the save button. This code should
 $(function () {
-  // TODO: Add a listener for click events on the save button. This code should
   
   $('.saveBtn').on("click", function() {
-    // var textMe =  $("textarea")
-    // localStorage.setItem("text", textMe.val(""));
     var timeSplit = $(this).parent().attr('id').split('-')[1];
     var valTxt = $(this).parent().find('.description').val();
     localStorage.setItem(timeSplit, valTxt);
   })
   
 }) 
-  var whatDayIsIt = dayjs();
+var whatDayIsIt = dayjs();
   $('#currentDay').text(whatDayIsIt.format("dddd MMMM DD"));
 
-  var whatTimeIsIt = dayjs().format('H');
+  var whatTimeIsIt = dayjs().format('HH');
   $(".time-block").each(function() {
   var blockPartyTime = $(this).attr('id').split('-')[1];
 
